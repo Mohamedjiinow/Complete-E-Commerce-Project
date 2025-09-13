@@ -1,0 +1,13 @@
+const express = require ("express")
+const router = express.Router()
+
+
+const customermodel = require("../controller/costumercontroller")
+const { verifytoken, isAdmin } = require("../mallware/auth")
+
+router.post("/create/customer", customermodel.createcustomer)
+router.post("/login/customer", customermodel.customerlogin)
+router.get("/read/customer", verifytoken, isAdmin, customermodel.readcustomer)
+
+
+module.exports = router
