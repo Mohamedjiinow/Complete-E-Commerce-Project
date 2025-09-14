@@ -8,7 +8,6 @@ import Customer from "./Components/CustomerReg";
 import CustomerLogin from "./Components/customerLogin";
 import DashboardCards from "./Components/cards";
 import Dashboard from "./Components/Dashboard";
-import ProtectedRouter from "./Components/protectedRouter";
 
 function App(){
   return <Routes>
@@ -16,9 +15,9 @@ function App(){
     <Route path="/cart" element={<Carts />}/>
     <Route path="/" element= {<Home /> }/>
     <Route path="/addproduct" element= {<Addproduct /> }/>
-    <Route path="/updateproduct/:id" element= {<ProtectedRouter><UpdateProduct /> </ProtectedRouter> }/>
+    <Route path="/updateproduct/:id" element= {<UpdateProduct />}/>
     <Route path="/customerReg" element= {<Customer /> }/>
-    <Route path="/cards" element= { <ProtectedRouter> <DashboardCards /> </ProtectedRouter>}/>
+    <Route path="/cards" element= {<DashboardCards />}/>
     <Route path="/dash" element= {<Dashboard />}/>
     <Route path="/customerlogin" element= {<CustomerLogin /> }/>
   </Routes>
