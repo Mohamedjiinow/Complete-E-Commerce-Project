@@ -67,5 +67,15 @@ const readcustomer= async(req,res)=>{
   }
 }
 
+const totalCustomer=async(req, res)=>{
+    try{
+const total = await customerModel.find().countDocuments()
+if(total){
+    res.send({total})
+}
+    }catch(error){
+        console.log(error)
+    }
+  }
 
-module.exports = {createcustomer, customerlogin, readcustomer}
+module.exports = {createcustomer, customerlogin, readcustomer, totalCustomer}

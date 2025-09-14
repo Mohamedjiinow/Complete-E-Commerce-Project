@@ -34,6 +34,11 @@ function Carts() {
         ? {...item, quantity: item.quantity < item.maxQuantity ? item.quantity + 1 : item.quantity} 
         : item
     )
+
+
+  
+   
+
     localStorage.setItem("products", JSON.stringify(updated))  // ✅ update storage
     return updated
   })

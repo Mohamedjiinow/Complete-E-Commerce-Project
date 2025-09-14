@@ -36,6 +36,10 @@ const createOrder=  async(req, res)=>{
         })
     }
 
+    if(!customer){
+        return res.status(400).json({message:"customer is Required"})
+    }
+
     const newData = new ordermodel({
         customer,
         products: order,
@@ -46,4 +50,22 @@ const createOrder=  async(req, res)=>{
     res.send(newData)
 }
 
-module.exports= {createOrder}
+const readOrder= async (req,res)=>{
+    const getorderData= await ordermodel.find().populate("products.productid","name price");
+    if(getorderData){
+        res.send(getorderData)
+    }
+}
+
+    const totalorder=async(req, res)=>{
+        try{
+    const total = await ordermodel.find().countDocuments()
+    if(total){
+        res.send({total})
+    }
+        }catch(error){
+            console.log(error)
+        }
+}
+
+module.exports= {createOrder, readOrder, totalorder}

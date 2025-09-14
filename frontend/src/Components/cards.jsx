@@ -7,6 +7,21 @@ import { useEffect } from "react";
 function DashboardCards() {
 
     const [total, settotal]= useState([])
+    const [totalcustomer, settotalcustomer]= useState([])
+    const [totalorder, settotalorder]= useState([])
+     
+
+    const handletoatalCustomer=()=>{
+      axios.get("http://localhost:9000/total/customer").then((res)=>{
+      settotalcustomer(res.data.total)
+      }).catch((error)=>console.log(error))
+    }
+
+    const handletoatalorder=()=>{
+      axios.get("http://localhost:9000/total/order").then((res)=>{
+      settotalorder(res.data.total)
+      }).catch((error)=>console.log(error))
+    }
 
     const handletotalproduct= ()=>{
         axios.get("http://localhost:9000/total/product").then((res)=>{
@@ -15,7 +30,9 @@ function DashboardCards() {
     }
 
     useEffect(()=>{
-        handletotalproduct()
+      handletoatalCustomer()
+      handletotalproduct()
+      handletoatalorder()  
     },[])
   return (
     <div className="flex gap-10">
@@ -30,12 +47,12 @@ function DashboardCards() {
 
       <div className="bg-green-400 text-white w-48 h-32 flex flex-col justify-center items-center rounded-lg shadow-md">
         <h2 className="text-xl font-semibold">All Customers</h2>
-        <p className="text-2xl font-bold">0</p>
+        <p className="text-2xl font-bold">{totalcustomer}</p>
       </div>
 
       <div className="bg-blue-400 text-white w-48 h-32 flex flex-col justify-center items-center rounded-lg shadow-md">
         <h2 className="text-xl font-semibold">Orders</h2>
-        <p className="text-2xl font-bold">0</p>
+        <p className="text-2xl font-bold">{totalorder}</p>
       </div>
     </div>
       </div>
